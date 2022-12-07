@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".app.ui.BarcodeScanFragment">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_barcode_scan"
+        android:layout_width="match_parent"
+        android:background="@color/teal_700"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"/>
+
+    <SurfaceView
+        android:id="@+id/sv_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/pv_barcode_scan"
+        app:layout_constraintBottom_toBottomOf="@id/pv_barcode_scan"
+        app:layout_constraintStart_toStartOf="@id/pv_barcode_scan"
+        app:layout_constraintEnd_toEndOf="@id/pv_barcode_scan"
+        />
+
+    <androidx.camera.view.PreviewView
+       android:id="@+id/pv_barcode_scan"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toBottomOf="@id/tb_barcode_scan"
+    />
+    <View
+        android:id="@+id/v_functional_scan"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/pv_barcode_scan"/>
+
+    <TextView
+        android:id="@+id/tv_barcode_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:text="@string/no_bar_code_detected"
+        app:layout_constraintTop_toBottomOf="@id/pv_barcode_scan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_scan_again"/>
+    <Button
+        android:id="@+id/btn_scan_again"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:text="@string/scan_again"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
