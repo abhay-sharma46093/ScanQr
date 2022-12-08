@@ -32,6 +32,9 @@ class MultiBarcodeScannerFragment : Fragment(R.layout.fragment_multi_barcode_sca
         super.onViewCreated(view, savedInstanceState)
         val barcodeCapture = childFragmentManager.findFragmentById(R.id.barcode) as BarcodeCapture
         barcodeCapture.setRetrieval(this)
+        barcodeCapture.setShowDrawRect(true)
+            .setSupportMultipleScan(true)
+        barcodeCapture.refresh()
         observeData()
     }
 
