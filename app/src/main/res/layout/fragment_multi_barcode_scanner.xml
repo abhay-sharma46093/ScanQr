@@ -11,9 +11,18 @@
         android:name="com.google.android.gms.samples.vision.barcodereader.BarcodeCapture"
         app:gvb_auto_focus="true"
         app:gvb_code_format="all_format"
+        app:gvb_show_text="true"
         app:gvb_flash="false"
         app:gvb_rect_colors="@array/rect_color"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:text="Stop Scanning"
+        android:id="@+id/bStop"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"
+        android:layout_height="wrap_content"/>
 
 </FrameLayout>

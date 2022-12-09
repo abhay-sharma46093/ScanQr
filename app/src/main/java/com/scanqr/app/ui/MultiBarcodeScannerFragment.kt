@@ -11,6 +11,7 @@ import com.google.android.gms.samples.vision.barcodereader.BarcodeCapture
 import com.google.android.gms.samples.vision.barcodereader.BarcodeGraphic
 import com.google.android.gms.vision.barcode.Barcode
 import com.scanqr.R
+import kotlinx.android.synthetic.main.fragment_multi_barcode_scanner.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,10 +33,13 @@ class MultiBarcodeScannerFragment : Fragment(R.layout.fragment_multi_barcode_sca
         super.onViewCreated(view, savedInstanceState)
         val barcodeCapture = childFragmentManager.findFragmentById(R.id.barcode) as BarcodeCapture
         barcodeCapture.setRetrieval(this)
-        barcodeCapture.setShowDrawRect(true)
-            .setSupportMultipleScan(true)
+        barcodeCapture.isShowDrawRect = true
+        //    .setSupportMultipleScan(true)
         barcodeCapture.refresh()
         observeData()
+        bStop.setOnClickListener {
+            printValues()
+        }
     }
 
     companion object {
@@ -67,12 +71,22 @@ class MultiBarcodeScannerFragment : Fragment(R.layout.fragment_multi_barcode_sca
     private fun observeData() {
         resultList.observe(requireActivity()) {
             mainList.add(it)
-            printValues()
         }
     }
 
     private fun printValues() {
-        Log.e(TAG, "printValues: ${mainList.toSet()}")
+        Log.e(TAG, "printValues: ${mainList.toSet()} | size : ${mainList.toSet().size}")
+        var text = ""
+        mainList.toSet().forEach {
+            text = text + "\n" + it
+        }
+
+
+        val builder = AlertDialog.Builder(requireContext())
+            .setTitle("Total QR scanned ${mainList.toSet().size}")
+            .setMessage(text)
+        builder.show()
+
     }
 
     override fun onRetrievedMultiple(
